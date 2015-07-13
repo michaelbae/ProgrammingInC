@@ -17,7 +17,7 @@ void enqueue(int n){
         printf("queue full!\n");
         return;
     } else {
-        tail++;
+        tail = (tail+1) % QUEUE_CAPACITY;
         queue_size++;
         queue[tail] = n;
     }
@@ -30,7 +30,7 @@ int dequeue(){
         printf("queue empty!\n");
     } else {
         r = queue[head];
-        head++;
+        head = (head + 1) % QUEUE_CAPACITY;
         queue_size--;
     }
     return r;
@@ -54,8 +54,7 @@ int main(int argc, const char * argv[]) {
 }
 
 /*
- Because C is lenient to checking index of array. This code will work even when we write outside of the array.
- This can cause serious bug. Alternative: circular queue
+ circular queue
  */
 
 
